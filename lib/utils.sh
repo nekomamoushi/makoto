@@ -78,6 +78,19 @@ log_result () {
     fi
 }
 
+empty () {
+    if [[ -z "$1" ]]; then
+        return 0
+    fi
+    return 1
+}
+
+not_empty() {
+    if [[ -n "$1" ]]; then
+        return 0
+    fi
+    return 1
+}
 
 has () {
     command -v "$1" &> /dev/null
@@ -139,3 +152,10 @@ darwin () {
     return 1
 }
 
+restart () {
+    ask_for_confirmation "Do you want to restart"
+    if ! answer_for_confirmation; then
+        return 0
+    fi
+    sudo shutdown -r now &> /dev/null
+}

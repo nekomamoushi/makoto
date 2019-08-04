@@ -24,3 +24,20 @@ log_result $? "curl is installed"
 
 has "noel"
 log_result $? "noel is not installed"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+EMPTY_VAR=""
+NON_EMPTY_VAR="VAR"
+
+if empty "${EMPTY_VAR}"; then
+    printf "%s\n" "${EMPTY_VAR} is EMPTY"
+else
+    printf "%s\n" "${EMPTY_VAR} is not EMPTY"
+fi
+
+if not_empty "${NON_EMPTY_VAR}"; then
+    printf "%s\n" "${NON_EMPTY_VAR} is EMPTY"
+else
+    printf "%s\n" "${NON_EMPTY_VAR} is not EMPTY"
+fi
