@@ -6,6 +6,8 @@ main () {
     log_header "Git"
 
     brew_install "git"
+    brew_install "diff-so-fancy"
+    brew_install "git-standup"
 }
 
 main
