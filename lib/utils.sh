@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-#=============#
-# ANSI COLORS #
-#=============#
-
+# --------------------------------------------------------------------------- #
+#                               ANSI COLORS                                   #
+# --------------------------------------------------------------------------- #
 RESET='\033[0m'
 BOLD='\033[1m'
 ITALIC='\033[3m'
@@ -25,6 +24,10 @@ INFO_SYMBOL="i"
 ARROW_SYMBOL="➜"
 QUESTION_SYMBOL="?"
 EXIT_SYMBOL="☠"
+
+# --------------------------------------------------------------------------- #
+#                                   LOGS                                      #
+# --------------------------------------------------------------------------- #
 
 log () {
     printf "%s\n" "$1"
@@ -93,6 +96,110 @@ log_exit () {
     fi
 }
 
+# --------------------------------------------------------------------------- #
+#                                   USER                                      #
+# --------------------------------------------------------------------------- #
+
+ask () {
+    log_question "$1"
+    read -r
+}
+
+ask_for_confirmation () {
+    log_question "$1 (y/n) "
+    read -r -n 1
+    printf "\n"
+}
+
+answer () {
+    printf "%s" "${REPLY}"
+}
+
+answer_for_confirmation () {
+    [[ "${REPLY}" =~ ^[Yy]$ ]] && return 0 || return 1
+}
+
+ask_for_sudo () {
+
+    # Ask for the administrator password upfront.
+    sudo -v &> /dev/null
+
+    # Update existing `sudo` time stamp
+    # until this script has finished.
+    #
+    # https://gist.github.com/cowboy/3118588
+    while true; do
+        sudo -n true
+        sleep 60
+        kill -0 "$$" || exit
+    done &> /dev/null &
+}
+
+# --------------------------------------------------------------------------- #
+#                                    OS                                       #
+# --------------------------------------------------------------------------- #
+
+get_os () {
+    OS_TYPE=$(uname -s)
+    printf "%s" "${OS_TYPE}"
+}
+
+verify_os () {
+    OS_TYPE=$(get_os)
+    if [ "${OS_TYPE}" == "$1" ] ; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+darwin () {
+    if verify_os "Darwin" ; then
+        return 0
+    fi
+    return 1
+}
+
+restart () {
+    ask_for_confirmation "Do you want to restart"
+    if ! answer_for_confirmation; then
+        return 0
+    fi
+    sudo shutdown -r now &> /dev/null
+}
+
+# --------------------------------------------------------------------------- #
+#                                 HOMEBREW                                    #
+# --------------------------------------------------------------------------- #
+
+brew_tap () {
+    execute "brew tap $1"
+}
+
+brew_install () {
+    if brew list "$1" &> /dev/null ; then
+        log_warn "$1 is already installed"
+        return 0
+    fi
+    execute "brew install $1"
+}
+
+cask_install () {
+    if brew cask list "$1" &> /dev/null ; then
+        log_warn "$1 is already installed"
+        return 0
+    fi
+    execute "brew cask install $1"
+}
+
+# --------------------------------------------------------------------------- #
+#                                 HELPERS                                     #
+# --------------------------------------------------------------------------- #
+
+has () {
+    command -v "$1" &> /dev/null
+}
+
 execute () {
     command="$1"
     message="${2:-$1}"
@@ -137,94 +244,6 @@ not_empty() {
     return 1
 }
 
-has () {
-    command -v "$1" &> /dev/null
-}
-
-ask () {
-    log_question "$1"
-    read -r
-}
-
-ask_for_confirmation () {
-    log_question "$1 (y/n) "
-    read -r -n 1
-    printf "\n"
-}
-
-answer () {
-    printf "%s" "${REPLY}"
-}
-
-answer_for_confirmation () {
-    [[ "${REPLY}" =~ ^[Yy]$ ]] && return 0 || return 1
-}
-
-ask_for_sudo () {
-
-    # Ask for the administrator password upfront.
-    sudo -v &> /dev/null
-
-    # Update existing `sudo` time stamp
-    # until this script has finished.
-    #
-    # https://gist.github.com/cowboy/3118588
-    while true; do
-        sudo -n true
-        sleep 60
-        kill -0 "$$" || exit
-    done &> /dev/null &
-}
-
-get_os () {
-    OS_TYPE=$(uname -s)
-    printf "%s" "${OS_TYPE}"
-}
-
-verify_os () {
-    OS_TYPE=$(get_os)
-    if [ "${OS_TYPE}" == "$1" ] ; then
-        return 0
-    else
-        return 1
-    fi
-}
-
-darwin () {
-    if verify_os "Darwin" ; then
-        return 0
-    fi
-    return 1
-}
-
-restart () {
-    ask_for_confirmation "Do you want to restart"
-    if ! answer_for_confirmation; then
-        return 0
-    fi
-    sudo shutdown -r now &> /dev/null
-}
-
-brew_tap () {
-    execute "brew tap $1"
-}
-
-brew_install () {
-    if brew list "$1" &> /dev/null ; then
-        log_warn "$1 is already installed"
-        return 0
-    fi
-    execute "brew install $1"
-}
-
-cask_install () {
-    if brew cask list "$1" &> /dev/null ; then
-        log_warn "$1 is already installed"
-        return 0
-    fi
-    execute "brew cask install $1"
-}
-
 download() {
     local url="$1"
     local output="$2"
@@ -257,6 +276,10 @@ symlink () {
 
     ln -s "${source_path}" "${target_path}" &> /dev/null
 }
+
+# --------------------------------------------------------------------------- #
+#                                  SSH                                        #
+# --------------------------------------------------------------------------- #
 
 ssh_gen_key () {
     default_ssh_key_filename="${HOME}/.ssh/id_rsa"
