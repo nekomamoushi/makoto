@@ -2,6 +2,8 @@
 
 cd "$(dirname "${BASH_SOURCE[0]}")" && . "../../../../lib/utils.sh"
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 main () {
     log_header "Quick Look Plugins"
 
@@ -11,5 +13,7 @@ main () {
     brew_install "quicklook-csv"
     brew_install "qlstephen"
 }
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main

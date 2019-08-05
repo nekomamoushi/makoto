@@ -2,6 +2,8 @@
 
 cd "$(dirname "${BASH_SOURCE[0]}")" && . "../../../../lib/utils.sh"
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 update_osx_shell_list () {
     # Add the new shell to the list of legit shells
     sudo bash -c "echo $1 >> /etc/shells"
@@ -25,3 +27,7 @@ main () {
     update_osx_shell_list "/usr/local/bin/zsh"
     change_osx_user_shell "/usr/local/bin/bash"
 }
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+main

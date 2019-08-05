@@ -2,6 +2,8 @@
 
 cd "$(dirname "${BASH_SOURCE[0]}")" && . "../../../../lib/utils.sh"
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 main () {
     log_header "Misc"
 
@@ -9,5 +11,7 @@ main () {
     cask_install "vscodium"
     cask_install "macdown"
 }
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main
