@@ -257,3 +257,36 @@ symlink () {
 
     ln -s "${source_path}" "${target_path}" &> /dev/null
 }
+
+ssh_gen_key () {
+    default_ssh_key_filename="${HOME}/.ssh/id_rsa"
+    pub_rsa_file="${1:-$default_ssh_key_filename}"
+
+    ask "Email: "
+    email_address="$(answer)"
+
+    ask "Passphrase: "
+    passphrase="$(answer)"
+
+    ssh-keygen -t rsa -b 4096 -C "${mail_address}" -f "${pub_rsa_file}" -N "${passphrase}"
+    log_result $? "Generate SSH Key"
+}
+
+ssh_copy_public_key_to_clipboard () {
+    ssh_public_key=$1
+    if has "pbcopy" ; then
+        pbcopy < "${ssh_public_key}"
+        log_result $? "Copy to ClipboardS SH Public Key "
+    else
+        log_warn "Please Copy the public SSH key to clipboard"
+    fi
+}
+
+ssh_add_config () {
+    ssh_config_file="${HOME}/.ssh/config"
+    printf "%s\n" \
+        "Host $1" \
+        "  PreferredAuthentications publickey" \
+        "  IdentityFile $2" >> "${ssh_config_file}"
+    log_result $? "Add SSH Key to SSH config"
+}
