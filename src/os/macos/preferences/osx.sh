@@ -4,7 +4,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" && . "../../../../lib/utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-log_header "Setting OSX Preferences"
+log_arrow "Setting OSX Preferences"
 
 # Menu bar: disable transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false

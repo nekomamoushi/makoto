@@ -3,7 +3,7 @@
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-log_header "Setting Apps Preferences"
+log_arrow "Setting Apps Preferences"
 
 # --------------------------------------------------------------------------- #
 #                               TRANSMISSION                                  #

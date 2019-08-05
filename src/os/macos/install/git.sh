@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" && . "../../../../lib/utils.sh"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main () {
-    log_header "Git"
+    log_arrow "Git"
 
     brew_install "git"
     brew_install "diff-so-fancy"

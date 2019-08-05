@@ -1,9 +1,14 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE[0]}")"
+cd "$(dirname "${BASH_SOURCE[0]}")" && . "../../../../lib/utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-./osx.sh
-./apps.sh
+main () {
+    log_header "Set Preferences"
 
+    ./osx.sh
+    ./apps.sh
+}
+
+main

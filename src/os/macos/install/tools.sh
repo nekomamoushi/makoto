@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" && . "../../../../lib/utils.sh"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main () {
-    log_header "Tools"
+    log_arrow "Tools"
 
     brew_install "fzf"
     brew_install "the_silver_searcher"

@@ -15,7 +15,7 @@ change_osx_user_shell () {
 }
 
 main () {
-    log_header "Shells"
+    log_arrow "Shells"
 
     brew_install "bash"
     brew_install "bash-completion@2"

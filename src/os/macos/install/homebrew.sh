@@ -20,7 +20,7 @@ mas_install () {
 }
 
 main () {
-    log_header "Homebrew"
+    log_arrow "Homebrew"
     homebrew_install
     mas_install
 }

@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" && . "../../../../lib/utils.sh"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main () {
-    log_header "Development"
+    log_arrow "Development"
 
     cask_install "iterm2"
     cask_install "sublime-merge"
