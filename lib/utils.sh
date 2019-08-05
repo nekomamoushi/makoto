@@ -224,3 +224,36 @@ cask_install () {
     fi
     execute "brew cask install $1"
 }
+
+download() {
+    local url="$1"
+    local output="$2"
+
+    if has "curl" &> /dev/null; then
+
+        curl -LsSo "$output" "$url"
+        #     │││└─ write output to file
+        #     ││└─ show error messages
+        #     │└─ don't show the progress meter
+        #     └─ follow redirects
+
+        return $?
+
+    elif has "wget" &> /dev/null; then
+
+        wget -qO "$output" "$url" &> /dev/null
+        #     │└─ write output to file
+        #     └─ don't show output
+
+        return $?
+    fi
+
+    return 1
+}
+
+symlink () {
+    local source_path="$1"
+    local target_path="$2"
+
+    ln -s "${source_path}" "${target_path}" &> /dev/null
+}
