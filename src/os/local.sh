@@ -18,6 +18,8 @@ export NVM_DIR=\"\${HOME}/.nvm\"
     printf "%s\n" "${NVM_CONFIG}" >> "${BASHRC_PATH}"
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 create_directories() {
     declare -a DIRECTORIES=(
         "{$HOME}/Downloads/torrents"
@@ -30,10 +32,28 @@ create_directories() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-main() {
+create_ssh_key () {
+    declare -a HOSTS=(
+        "github.com"
+        "gitlab.com"
+    )
+    local ssh_key_filename="${HOME}/.ssh/id_rsa"
+    local ssh_public_key_filename="${HOME}/.ssh/id_rsa.pub"
+
+    ssh_gen_key "${ssh_key_filename}"
+    for host in "${HOSTS[@]}"; do
+        ssh_add_config "${host}" "${ssh_public_key_filename}"
+    done
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+main () {
     log_header "Manage Local Files"
-    create_bashrc_local
+
     create_directories
+    create_bashrc_local
+    create_ssh_key
 }
 
 main
