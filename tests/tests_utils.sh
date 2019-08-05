@@ -25,7 +25,7 @@ log_result $? "curl is installed"
 has "noel"
 log_result $? "noel is not installed"
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 
 EMPTY_VAR=""
 NON_EMPTY_VAR="VAR"

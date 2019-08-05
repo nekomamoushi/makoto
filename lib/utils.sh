@@ -78,6 +78,16 @@ log_result () {
     fi
 }
 
+log_exit () {
+    if [ "$1" = "0" ] ; then
+        log_success "$2"
+        return 0
+    else
+        printf "\n\n%b%s%b\n\n" "${b_red}" "↳ EXIT: $2" "${reset}"
+        exit 1
+    fi
+}
+
 empty () {
     if [[ -z "$1" ]]; then
         return 0
