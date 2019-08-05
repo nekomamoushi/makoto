@@ -93,6 +93,36 @@ log_exit () {
     fi
 }
 
+execute () {
+    command="$1"
+    message="${2:-$1}"
+    tmp_file="$(mktemp /tmp/XXXXX)"
+
+    exit_code=0
+    pid_command=""
+
+    log_wait "${message}"
+    # Execute commands in background
+    eval "${command}" &> /dev/null 2> "${tmp_file}" &
+    pid_command=$!
+
+    # Wait for the commands to no longer be executing
+    # in the background, and then get their exit code.
+    wait "${pid_command}" &> /dev/null
+    exit_code=$?
+
+    # Print output based on what happened.
+    log_result "${exit_code}" "$MSG"
+
+    if [ ${exit_code} -ne 0 ]; then
+        log_error_stream < "${tmp_file}"
+    fi
+
+    rm -rf "${tmp_file}}"
+
+    return ${exit_code}
+}
+
 empty () {
     if [[ -z "$1" ]]; then
         return 0

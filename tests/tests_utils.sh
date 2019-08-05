@@ -43,3 +43,7 @@ if not_empty "${NON_EMPTY_VAR}"; then
 else
     printf "%s\n" "${NON_EMPTY_VAR} is not EMPTY"
 fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+execute "brew install thefuck"
