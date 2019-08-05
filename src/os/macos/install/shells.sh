@@ -17,7 +17,9 @@ main () {
 
     brew_install "bash"
     brew_install "bash-completion@2"
+    brew_install "bash-git-prompt"
     brew_install "zsh"
+    brew_install "zplug"
 
     update_osx_shell_list "/usr/local/bin/bash"
     update_osx_shell_list "/usr/local/bin/zsh"
