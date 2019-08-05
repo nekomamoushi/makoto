@@ -88,7 +88,7 @@ log_exit () {
         log_success "$2"
         return 0
     else
-        printf "\n\n%b%s%b\n\n" "${b_red}" "↳ EXIT: $2" "${reset}"
+        printf "\n\n%b%s%b\n\n" "${RED}" "↳ EXIT: $2" "${reset}"
         exit 1
     fi
 }
