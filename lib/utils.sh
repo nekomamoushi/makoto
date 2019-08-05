@@ -204,3 +204,23 @@ restart () {
     fi
     sudo shutdown -r now &> /dev/null
 }
+
+brew_tap () {
+    execute "brew tap $1"
+}
+
+brew_install () {
+    if brew list "$1" &> /dev/null ; then
+        log_warn "$1 is already installed"
+        return 0
+    fi
+    execute "brew install $1"
+}
+
+cask_install () {
+    if brew cask list "$1" &> /dev/null ; then
+        log_warn "$1 is already installed"
+        return 0
+    fi
+    execute "brew cask install $1"
+}
