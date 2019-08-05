@@ -274,6 +274,7 @@ ssh_gen_key () {
 
 ssh_copy_public_key_to_clipboard () {
     ssh_public_key=$1
+
     if has "pbcopy" ; then
         pbcopy < "${ssh_public_key}"
         log_result $? "Copy to ClipboardS SH Public Key "
@@ -284,8 +285,11 @@ ssh_copy_public_key_to_clipboard () {
 
 ssh_add_config () {
     ssh_config_file="${HOME}/.ssh/config"
+
+    touch "${ssh_config_file}"
     printf "%s\n" \
         "Host $1" \
+        "  HostName $1"
         "  PreferredAuthentications publickey" \
         "  IdentityFile $2" >> "${ssh_config_file}"
     log_result $? "Add SSH Key to SSH config"
