@@ -6,6 +6,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")" || exit 1
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+log_header "Test"
+
 ask "Quel est votre passion"
 log_info "Answer = $(answer)"
 

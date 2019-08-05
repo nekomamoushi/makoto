@@ -38,6 +38,11 @@ log_info () {
     printf "    [ %b%s%b ] %s\n" "${WHITE}" "${INFO_SYMBOL}" "${RESET}" "$1"
 }
 
+log_header () {
+    printf "• %b%s%b\n" "${BLUE}" "$1" "${RESET}"
+    log_empty
+}
+
 log_question () {
     printf "    [ %b%s%b ] %s : " "${CYAN}" "${QUESTION_SYMBOL}" "${RESET}" "$1"
 }
