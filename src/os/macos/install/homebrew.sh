@@ -15,4 +15,16 @@ homebrew_install () {
     fi
 }
 
-homebrew_install
+mas_install () {
+    brew_install "mas"
+}
+
+main () {
+    log_header "Homebrew"
+    homebrew_install
+    mas_install
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+main
