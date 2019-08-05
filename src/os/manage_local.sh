@@ -14,7 +14,7 @@ export NVM_DIR=\"\${HOME}/.nvm\"
 "
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    touch ${BASHRC_PATH}
+    touch "${BASHRC_PATH}"
     printf "%s\n" "${NVM_CONFIG}" >> "${BASHRC_PATH}"
 }
 

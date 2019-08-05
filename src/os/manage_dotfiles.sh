@@ -16,20 +16,20 @@ download_dotfiles() {
     local tmpFile=""
 
     tmpFile="$(mktemp /tmp/XXXXX)"
-    download "$DOTFILES_TARBALL_URL" "$tmpFile"
+    download "${dotfilesUrl}" "${tmpFile}"
     log_result "$?" "Download dotfiles tarball"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    mkdir -p "$dotfilesDir"
+    mkdir -p "${dotfilesDir}"
 
     # Extract archive in the `dotfiles` directory.
-    tar -zxf "$tmpFile" --strip-components 1 -C "$dotfilesDir"
+    tar -zxf "${tmpFile}" --strip-components 1 -C "${dotfilesDir}"
     log_result "$?" "Extract dotfiles tarball"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    rm -rf "$tmpFile"
+    rm -rf "${tmpFile}"
     log_result "$?" "Remove dotfiles tarball"
 
 }
