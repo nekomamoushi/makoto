@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+cd "$(dirname "${BASH_SOURCE[0]}")" && . "../../../../lib/utils.sh"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+log_header "Setting OSX Preferences"
+
 # Menu bar: disable transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
@@ -194,4 +200,4 @@ killall "App Store" &> /dev/null
 
 # --------------------------------------------------------------------------- #
 
-log_info "✨  Setting Preferences Success"
+log_info "✨  Setting OSX Preferences Success"
