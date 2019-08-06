@@ -30,6 +30,10 @@ Y88b  d88P888  888Y88b 888Y88b. Y88b 888Y88..88PY88b 888 d88P888  888
  "Y8888P" 888  888 "Y88888 "Y888 "Y88888 "Y88P"  "Y8888888P" 888  888
 '
 
+setup () {
+    ./src/os/setup.sh
+}
+
 # ---- #
 # MAIN #
 # ---- #
@@ -37,3 +41,7 @@ Y88b  d88P888  888Y88b 888Y88b. Y88b 888Y88..88PY88b 888 d88P888  888
 log "${INTRO}"
 
 verify_os "Darwin" || log_error "This script only works on MacOS" || exit 1
+
+setup
+
+restart
