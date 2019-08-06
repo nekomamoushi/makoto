@@ -53,13 +53,13 @@ Launch the following command:
 
 ### Fonts
 
-* Iosevka
-* Fira Code
+* [Iosevka](https://github.com/be5invis/Iosevka)
+* [Fira Code](https://github.com/tonsky/FiraCode)
 
 ### Shell
 
-* bash
-* zsh
+* [bash](https://www.gnu.org/software/bash/)
+* [zsh](http://zsh.sourceforge.net/)
 
 ### Git
 
