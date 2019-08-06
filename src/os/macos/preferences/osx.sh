@@ -113,13 +113,13 @@ defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 # --------------------------------------------------------------------------- #
 
 # Set the icon size of Dock items to 56 pixels
-defaults write com.apple.dock tilesize -int 56
+defaults write com.apple.dock tilesize -int 48
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool false
 
 # Minimize windows into their application’s icon
-defaults write com.apple.dock minimize-to-application -bool false
+defaults write com.apple.dock minimize-to-application -bool true
 
 # Enable spring loading for all Dock items
 defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
