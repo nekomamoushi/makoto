@@ -45,21 +45,21 @@ Launch the following command:
 
 ### Editors
 
-* [Sublime Text](https://www.sublimetext.com/)
+- [Sublime Text](https://www.sublimetext.com/)
 - [Visual Studio](https://github.com/Microsoft/vscode)
-* [Vim](https://github.com/vim/vim)
+- [Vim](https://github.com/vim/vim)
 - [Macdown](https://macdown.uranusjr.com)
 
 
 ### Fonts
 
-* [Iosevka](https://github.com/be5invis/Iosevka)
-* [Fira Code](https://github.com/tonsky/FiraCode)
+- [Iosevka](https://github.com/be5invis/Iosevka)
+- [Fira Code](https://github.com/tonsky/FiraCode)
 
 ### Shell
 
-* [bash](https://www.gnu.org/software/bash/)
-* [zsh](http://zsh.sourceforge.net/)
+- [bash](https://www.gnu.org/software/bash/)
+- [zsh](http://zsh.sourceforge.net/)
 
 ### Git
 
@@ -78,7 +78,7 @@ Launch the following command:
 - [fzf](https://github.com/junegunn/fzf)
 - [the-silver-searcher](https://github.com/ggreer/the_silver_searcher)
 - [htop](https://hisham.hm/htop)
-* [tldr](https://github.com/tldr-pages/tldr)
+- [tldr](https://github.com/tldr-pages/tldr)
 
 ### Productivity
 
@@ -98,15 +98,16 @@ Launch the following command:
 
 ### Quicklook Plugins
 
-* qlcolorcode
-* qlmarkdown
-* quicklook-json
-* quicklook-csv
-* qlstephen
+- [qlcolorcode](https://github.com/sindresorhus/quick-look-plugins#QLColorCode)
+- [qlmarkdown](https://github.com/sindresorhus/quick-look-pluginsQLMarkdown)
+- [quicklook-json](https://github.com/sindresorhus/quick-look-plugins#QuickLookJSON)
+- [quicklook-csv](https://github.com/p2/quicklook-csv)
+- [qlstephen](https://github.com/sindresorhus/quick-look-plugins#QLStephen)
+
 
 ## Credits
 
-* [Cătălin](https://github.com/alrra/dotfiles)
+- [Cătălin](https://github.com/alrra/dotfiles)
 
 ## License
 
